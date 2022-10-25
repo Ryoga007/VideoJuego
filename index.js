@@ -2,7 +2,7 @@ import kaboom from "https://unpkg.com/kaboom/dist/kaboom.mjs";
 
 kaboom({
     background: [0, 0, 0],
-    width:1600,
+    width:1700,
     height:900,
 })
 // *Cargando imagenes estaticas
@@ -15,6 +15,7 @@ loadSprite('mapa','assets/sprites/mapaAset01.png')
 loadSprite('block', 'assets/sprites/block1.png' )
 loadSprite('cebra', 'assets/sprites/cono.png')
 loadSprite('logoUsfa', 'assets/sprites/LogoUsfa.png')
+loadSprite('nivel0', 'assets/sprites/nivel0.png')
 
 // *Cargamos sonido
 
@@ -32,10 +33,25 @@ loadSpriteAtlas('assets/sprites/AutoSet01t.png', {
     },
   })
 
+  loadSpriteAtlas('assets/sprites/AutoSet02.png', {
+    hero2: {
+      x: 1,
+      y: 1,
+      width: 206,
+      height: 88,
+      sliceX: 2,
+      anims: {
+        run: { from: 0, to: 1, loop: true, speed: 5 }
+      }
+    },
+  })
+
 // *Declarando las Variables
 // const music = play('musicaFondo', {loop: true, volume: 1})
 var linea;
+var nivel;
 var opcionMenu = 1;
+
   
 
 // * Iniciando las escenas de incio
@@ -158,75 +174,73 @@ scene('menu', () => {
 					break;
 			}
 		})
-	})
 
-	onKeyPress("down", () => {
+		onKeyPress("down", () => {
 
-		switch (opcionMenu) {
-			case 1:
-				linea.destroy();
-				linea = add([
-					sprite('imgIntroLinia'),
-					pos(width()/2, 430),
-					origin('center')
-				]);
-				opcionMenu = 2;
-				break;
-			case 2:
-				linea.destroy();
-				linea = add([
-					sprite('imgIntroLinia'),
-					pos(width()/2, 580),
-					origin('center')
-				]);
-				opcionMenu = 3;
-				break;
-			default:
-				linea.destroy();
-				linea = add([
-					sprite('imgIntroLinia'),
-					pos(width()/2, 280),
-					origin('center')
-				]);
-				opcionMenu = 1;
-				break;
-		}
-	})
-
-	onKeyPress("up", () => {
-
-		switch (opcionMenu) {
-			case 1:
-				linea.destroy();
-				linea = add([
-					sprite('imgIntroLinia'),
-					pos(width()/2, 580),
-					origin('center')
-				]);
-				opcionMenu = 3;
-				break;
-			case 2:
-				linea.destroy();
-				linea = add([
-					sprite('imgIntroLinia'),
-					pos(width()/2, 280),
-					origin('center')
-				]);
-				opcionMenu = 1;
-				break;
-			default:
-				linea.destroy();
-				linea = add([
-					sprite('imgIntroLinia'),
-					pos(width()/2, 430),
-					origin('center')
-				]);
-				opcionMenu = 2;
-				break;
-		}
-	})
-
+			switch (opcionMenu) {
+				case 1:
+					linea.destroy();
+					linea = add([
+						sprite('imgIntroLinia'),
+						pos(width()/2, 430),
+						origin('center')
+					]);
+					opcionMenu = 2;
+					break;
+				case 2:
+					linea.destroy();
+					linea = add([
+						sprite('imgIntroLinia'),
+						pos(width()/2, 580),
+						origin('center')
+					]);
+					opcionMenu = 3;
+					break;
+				default:
+					linea.destroy();
+					linea = add([
+						sprite('imgIntroLinia'),
+						pos(width()/2, 280),
+						origin('center')
+					]);
+					opcionMenu = 1;
+					break;
+			}
+		})
 	
+		onKeyPress("up", () => {
+	
+			switch (opcionMenu) {
+				case 1:
+					linea.destroy();
+					linea = add([
+						sprite('imgIntroLinia'),
+						pos(width()/2, 580),
+						origin('center')
+					]);
+					opcionMenu = 3;
+					break;
+				case 2:
+					linea.destroy();
+					linea = add([
+						sprite('imgIntroLinia'),
+						pos(width()/2, 280),
+						origin('center')
+					]);
+					opcionMenu = 1;
+					break;
+				default:
+					linea.destroy();
+					linea = add([
+						sprite('imgIntroLinia'),
+						pos(width()/2, 430),
+						origin('center')
+					]);
+					opcionMenu = 2;
+					break;
+			}
+		})
+	})
 }),
 
 scene("informacion", () => {
@@ -292,6 +306,7 @@ scene("informacion", () => {
 // *Empieza el Juego
 
 scene("main", (levelIdx) => {
+	
 
 	// * Empesacos a CARGAR la pagina con el 'mapa' y la musica de fondo
 	add([
@@ -307,7 +322,7 @@ scene("main", (levelIdx) => {
 	
 	const SPEED = 320
 
-	const characters = {
+	const characters = { 
 		"a": {
 			sprite: "cebra",  //!Cambio "bag" por "cebra"
 			msg: "Es un paso de Cebra, recuerda mirar a ambos lados",
@@ -369,7 +384,17 @@ scene("main", (levelIdx) => {
 			"---------",
 		],
 	]
-
+	
+	wait(1, () => {
+		nivel=add([
+			sprite('nivel'+levelIdx),
+			pos(width()/2,height()/2),
+			origin('center')
+		])
+	})
+	wait(3, () => {
+	nivel.destroy()
+	
 	addLevel(levels[levelIdx], {
 		width: 36,
 		height: 36,
@@ -422,29 +447,46 @@ scene("main", (levelIdx) => {
 	player.play("run")
 	player.onUpdate(() => {
 
-		if (player.pos.x < 953) {
-			if (player.pos.y < 485) {
-				camPos(953,485)		
-			} else if (player.pos.y > 796) {
-				camPos(953,796)		
+		// function spawnTree() {
+
+			add([
+				sprite('hero2',{anim: 'run'}),
+				area(),
+				// outline(4),
+				pos(width(), 200),
+				origin("botleft"),
+				color(255, 180, 255),
+				move(LEFT, 40),
+				cleanup(),
+				"tree",
+			])
+		// }
+	
+		// spawnTree()
+
+		if (player.pos.x < 848) {
+			if (player.pos.y < 448) {
+				camPos(848,448)		
+			} else if (player.pos.y > 836) {
+				camPos(848,836)		
 			}else {
-				camPos(953,player.pos.y)
+				camPos(848,player.pos.y)
 			}
 				
 		}
-		else if (player.pos.x > 2230) {
-			if (player.pos.y < 485) {
-				camPos(2230,485)		
-			} else if (player.pos.y > 796) {
-				camPos(2230,796)		
+		else if (player.pos.x > 2350) {
+			if (player.pos.y < 448) {
+				camPos(2350,448)		
+			} else if (player.pos.y > 836) {
+				camPos(2350,836)		
 			}else {
-				camPos(2230,player.pos.y)
+				camPos(2350,player.pos.y)
 			}
 		} else {
-			if (player.pos.y <= 485) {
-				camPos(player.pos.x, 485)		
-			} else if (player.pos.y >= 796) {
-				camPos(player.pos.x, 796)		
+			if (player.pos.y <= 448) {
+				camPos(player.pos.x, 448)		
+			} else if (player.pos.y >= 836) {
+				camPos(player.pos.x, 836)		
 			}else {
 				camPos(player.pos)
 			}
@@ -493,7 +535,7 @@ scene("main", (levelIdx) => {
 			},
 		}
 	}
-
+	
 	let hasKey = false
 	const dialog = addDialog()
 
@@ -536,7 +578,8 @@ scene("main", (levelIdx) => {
 			player.move(dirs[dir].scale(SPEED))
 		})
 	}
-
+	})
+	
 })
 
 scene("win", () => {
@@ -548,3 +591,4 @@ scene("win", () => {
 })
 
 go('credits-0')
+// go('main', 0)
