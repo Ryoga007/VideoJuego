@@ -16,6 +16,8 @@ loadSprite('block', 'assets/sprites/block1.png' )
 loadSprite('cebra', 'assets/sprites/cono.png')
 loadSprite('logoUsfa', 'assets/sprites/LogoUsfa.png')
 loadSprite('nivel0', 'assets/sprites/nivel0.png')
+loadSprite('menu1', 'assets/sprites/Menu1.png')
+
 
 // *Cargamos sonido
 
@@ -51,6 +53,7 @@ loadSpriteAtlas('assets/sprites/AutoSet01t.png', {
 var linea;
 var nivel;
 var opcionMenu = 1;
+var playerPos = (0,0);
 
   
 
@@ -298,7 +301,6 @@ scene("informacion", () => {
 	})
 	  
 	onKeyPress("space", () => {
-		console.log(onKeyPress);
 		go("menu")
 	});
 })
@@ -339,12 +341,12 @@ scene("main", (levelIdx) => {
 			" ",    
 			" ",
 			" =======================================================================================",
-			" =  @        a                                                                         =",
+			" =  @        a        -                   -                                            =",
 			" =                                                                                     =",
 			" =                                                                                     =",
 			" =                                                                                     =",
 			" =                                                                                     =",
-			" =           a                                                                         =",
+			" =           a        -                                       -                    -   =",
 			" ====       =============      =============      ==============      ==============   =",
 			"    =       =           =      =           =      =            =      =            =   =",
 			"    =       =           =      =           =      =            =      =            =   =",
@@ -404,11 +406,14 @@ scene("main", (levelIdx) => {
 			area(),
 			solid(),
 		],
-		// "-": () => [
-		// 	sprite("steel"),
-		// 	area(),
-		// 	solid(),
-		// ],
+		"-": () => [
+			sprite("hero2"),
+			area(),
+			solid(),
+			move(LEFT, 40),
+			// cleanup(),
+			"player2"
+		],
 		// "$": () => [
 		// 	sprite("key"),
 		// 	area(),
@@ -445,24 +450,8 @@ scene("main", (levelIdx) => {
 	
 	const player = get("player")[0]
 	player.play("run")
-	player.onUpdate(() => {
-
-		// function spawnTree() {
-
-			add([
-				sprite('hero2',{anim: 'run'}),
-				area(),
-				// outline(4),
-				pos(width(), 200),
-				origin("botleft"),
-				color(255, 180, 255),
-				move(LEFT, 40),
-				cleanup(),
-				"tree",
-			])
-		// }
 	
-		// spawnTree()
+	player.onUpdate(() => {
 
 		if (player.pos.x < 848) {
 			if (player.pos.y < 448) {
@@ -491,9 +480,9 @@ scene("main", (levelIdx) => {
 				camPos(player.pos)
 			}
 		}
-	  })
+		playerPos = camPos()
+	})
 
-	
 	function addDialog() {
 		const h = 160
 		const pad = 16
@@ -570,16 +559,33 @@ scene("main", (levelIdx) => {
 		"down": DOWN,
 	}
 
-	for (const dir in dirs) {
-		onKeyPress(dir, () => {
-			dialog.dismiss()
-		})
-		onKeyDown(dir, () => {
-			player.move(dirs[dir].scale(SPEED))
-		})
-	}
-	})
 	
+		for (const dir in dirs) {
+			onKeyPress(dir, () => {
+				dialog.dismiss()
+			})	
+			onKeyDown(dir, () => {
+				if (!debug.paused) {
+				player.move(dirs[dir].scale(SPEED))
+				}
+			})
+		}
+	
+		
+	onKeyPress("enter", () => {
+		debug.paused = true
+		// console.log(player.pos);
+		add([
+			sprite('menu1'),
+			pos(playerPos),
+			origin('center'),
+			scale(2)
+		]);
+	});
+	}) //*Aqui termina la espera de 3Seg en la escena
+	
+	
+
 })
 
 scene("win", () => {
