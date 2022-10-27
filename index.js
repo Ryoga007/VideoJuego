@@ -17,6 +17,7 @@ loadSprite('cebra', 'assets/sprites/cono.png')
 loadSprite('logoUsfa', 'assets/sprites/LogoUsfa.png')
 loadSprite('nivel0', 'assets/sprites/nivel0.png')
 loadSprite('menu1', 'assets/sprites/Menu1.png')
+loadSprite('Marco', 'assets/sprites/Marco.png')
 
 
 // *Cargamos sonido
@@ -51,8 +52,11 @@ loadSpriteAtlas('assets/sprites/AutoSet01t.png', {
 // *Declarando las Variables
 // const music = play('musicaFondo', {loop: true, volume: 1})
 var linea;
+var marco;
+var menu2;
 var nivel;
 var opcionMenu = 1;
+var opcionMenu2 = 1;
 var playerPos = (0,0);
 
   
@@ -345,8 +349,8 @@ scene("main", (levelIdx) => {
 			" =                                                                                     =",
 			" =                                                                                     =",
 			" =                                                                                     =",
-			" =                                                                                     =",
-			" =           a        -                                       -                    -   =",
+			" =                             -                             -                     -   =",
+			" =           a                                                                         =",
 			" ====       =============      =============      ==============      ==============   =",
 			"    =       =           =      =           =      =            =      =            =   =",
 			"    =       =           =      =           =      =            =      =            =   =",
@@ -360,11 +364,11 @@ scene("main", (levelIdx) => {
 			"    =       =           =      =           =      =            =      =            =   =",
 			" ====       =============      =============      ==============      ==============   =",
 			" =                                                                                     =",
+			" =                                         -                                           =",
 			" =                                                                                     =",
+			" =                                                                                -    =",
 			" =                                                                                     =",
-			" =                                                                                     =",
-			" =                                                                                     =",
-			" =                                                                                     =",
+			" =                      -                                                              =",
 			" ====       =============      =============      ==============      ==============   =",
 			"    =       =           =      =           =      =            =      =            =   =",
 			"    =       =           =      =           =      =            =      =            =   =",
@@ -411,8 +415,10 @@ scene("main", (levelIdx) => {
 			area(),
 			solid(),
 			move(LEFT, 40),
+			scale(0.9),
 			// cleanup(),
 			"player2"
+			
 		],
 		// "$": () => [
 		// 	sprite("key"),
@@ -562,30 +568,98 @@ scene("main", (levelIdx) => {
 	
 		for (const dir in dirs) {
 			onKeyPress(dir, () => {
+				if (!debug.paused) {
 				dialog.dismiss()
+				}
 			})	
 			onKeyDown(dir, () => {
 				if (!debug.paused) {
-				player.move(dirs[dir].scale(SPEED))
+					player.move(dirs[dir].scale(SPEED))
 				}
 			})
 		}
-	
-		
-	onKeyPress("enter", () => {
-		debug.paused = true
-		// console.log(player.pos);
-		add([
-			sprite('menu1'),
-			pos(playerPos),
-			origin('center'),
-			scale(2)
-		]);
-	});
-	}) //*Aqui termina la espera de 3Seg en la escena
-	
-	
 
+	onKeyPress("enter", () => {
+		if (!debug.paused) {
+			debug.paused = true
+			// console.log(player.pos);
+			menu2 =add([
+				sprite('menu1'),
+				pos(playerPos),
+				origin('center'),
+				scale(2)
+			]);
+			marco = add([
+				sprite('Marco'),
+				pos(playerPos.x - 18, playerPos.y -25),
+				origin('center'),
+				scale(2)
+			]);	
+		} else {
+			debug.paused = false
+			menu2.destroy()
+			marco.destroy()
+		}
+	})
+
+	if (debug.paused) {
+		console.log("ya pues");
+		onKeyPress("down", () => {
+			console.log("entra");
+
+			switch (opcionMenu2) {
+				case 1:
+					marco.destroy();
+					marco = add([
+						sprite('Marco'),
+						pos(playerPos.x - 18, playerPos.y + 75),
+						origin('center'),
+						scale(2)
+					]);
+					opcionMenu2 = 2;
+				break;
+				default:
+					marco.destroy();
+					marco = add([
+						sprite('Marco'),
+						pos(playerPos.x - 18, playerPos.y - 25),
+						origin('center'),
+						scale(2)
+					]);
+					opcionMenu2 = 1;
+				break;
+			}
+		})
+	
+		onKeyPress("up", () => {
+
+			switch (opcionMenu2) {
+				case 1:
+					marco.destroy();
+					marco = add([
+						sprite('Marco'),
+						pos(playerPos.x - 18, playerPos.y - 25),
+						origin('center'),
+						scale(2)
+					]);
+					opcionMenu2 = 2;
+				break;
+				default:
+					marco.destroy();
+					marco = add([
+						sprite('Marco'),
+						pos(playerPos.x - 18, playerPos.y + 75),
+						origin('center'),
+						scale(2)
+					]);
+					opcionMenu2 = 1;
+				break;
+			}
+		})
+	}
+
+	
+})//*Aqui termina la espera de 3Seg en la escena
 })
 
 scene("win", () => {
