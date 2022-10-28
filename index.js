@@ -13,11 +13,13 @@ loadSprite('imgIntroLinia', 'assets/sprites/Linia.png')
 loadSprite('imgDocente', 'assets/sprites/docente.png')
 loadSprite('mapa','assets/sprites/mapaAset01.png')
 loadSprite('block', 'assets/sprites/block1.png' )
+loadSprite('block1', 'assets/sprites/block1.png' )
 loadSprite('cebra', 'assets/sprites/cono.png')
 loadSprite('logoUsfa', 'assets/sprites/LogoUsfa.png')
 loadSprite('nivel0', 'assets/sprites/nivel0.png')
 loadSprite('menu1', 'assets/sprites/Menu1.png')
 loadSprite('Marco', 'assets/sprites/Marco.png')
+
 
 
 // *Cargamos sonido
@@ -32,22 +34,116 @@ loadSpriteAtlas('assets/sprites/AutoSet01t.png', {
       sliceX: 2,
       anims: {
         run: { from: 0, to: 1, loop: true, speed: 5 }
-      }
+      },  
     },
+	hero2: {
+		x: 64,
+		y: 1,
+		width: 64,
+		height: 32,
+		sliceX: 2,
+		anims: {
+		  run: { from: 0, to: 1, loop: true, speed: 5 }
+		},  
+	  },
+	hero3: {
+		x: 1,
+		y: 32,
+		width: 64,
+		height: 32,
+		sliceX: 2,
+		anims: {
+		  run: { from: 0, to: 1, loop: true, speed: 5 }
+		},
+	},
+	hero4: {
+		x: 64,
+		y: 32,
+		width: 64,
+		height: 32,
+		sliceX: 2,
+		anims: {
+		  run: { from: 0, to: 1, loop: true, speed: 5 }
+		},
+	}
+	
   })
 
-  loadSpriteAtlas('assets/sprites/AutoSet02.png', {
-    hero2: {
-      x: 1,
-      y: 1,
-      width: 206,
-      height: 88,
-      sliceX: 2,
-      anims: {
-        run: { from: 0, to: 1, loop: true, speed: 5 }
-      }
-    },
-  })
+loadSpriteAtlas('assets/sprites/AutoSet02.png', {
+bot: {
+	x: 1,
+	y: 1,
+	width: 206,
+	height: 88,
+	sliceX: 2,
+	anims: {
+	run: { from: 0, to: 1, loop: true, speed: 5 }
+	}
+},
+})
+
+loadSpriteAtlas('assets/sprites/Semaforo.png', {
+	amarillo1: {
+		x: 1,
+		y: 1,
+		width: 112,
+		height: 255,
+		// sliceX: 2,
+		// anims: {
+		// run: { from: 0, to: 1, loop: true, speed: 5 }
+		// }
+	},
+	amarillo2: {
+		x: 112,
+		y: 1,
+		width: 112,
+		height: 255,
+		// sliceX: 2,
+		// anims: {
+		// run: { from: 0, to: 1, loop: true, speed: 5 }
+		// }
+	},
+	rojo1: {
+		x: 224,
+		y: 1,
+		width: 112,
+		height: 255,
+		// sliceX: 2,
+		// anims: {
+		// run: { from: 0, to: 1, loop: true, speed: 5 }
+		// }
+	},
+	rojo2: {
+		x: 336,
+		y: 1,
+		width: 112,
+		height: 255,
+		// sliceX: 2,
+		// anims: {
+		// run: { from: 0, to: 1, loop: true, speed: 5 }
+		// }
+	},
+	verde1: {
+		x: 448,
+		y: 1,
+		width: 112,
+		height: 255,
+		// sliceX: 2,
+		// anims: {
+		// run: { from: 0, to: 1, loop: true, speed: 5 }
+		// }
+	},
+	verde2: {
+		x: 560,
+		y: 1,
+		width: 112,
+		height: 255,
+		// sliceX: 2,
+		// anims: {
+		// run: { from: 0, to: 1, loop: true, speed: 5 }
+		// }
+	},
+	})
 
 // *Declarando las Variables
 // const music = play('musicaFondo', {loop: true, volume: 1})
@@ -58,7 +154,7 @@ var nivel;
 var opcionMenu = 1;
 var opcionMenu2 = 1;
 var playerPos = (0,0);
-
+var sumaTiempo= 0;
   
 
 // * Iniciando las escenas de incio
@@ -308,7 +404,7 @@ scene("informacion", () => {
 		go("menu")
 	});
 })
-
+// !--------------------------------------------------------------------------------------------------------
 // *Empieza el Juego
 
 scene("main", (levelIdx) => {
@@ -317,9 +413,11 @@ scene("main", (levelIdx) => {
 	// * Empesacos a CARGAR la pagina con el 'mapa' y la musica de fondo
 	add([
 		sprite('mapa'),
-		scale(4,4)
-	])
+		// pos(4,4),
+		scale(4)
 
+	])
+	
 	// const music = play("musicaFondo", {
 	// 	volume: 0.5,
 	// 	loop: true
@@ -345,12 +443,12 @@ scene("main", (levelIdx) => {
 			" ",    
 			" ",
 			" =======================================================================================",
-			" =  @        a        -                   -                                            =",
+			" =  @        +        -                   -                                            =",
 			" =                                                                                     =",
 			" =                                                                                     =",
 			" =                                                                                     =",
 			" =                             -                             -                     -   =",
-			" =           a                                                                         =",
+			" =           +                                                                         =",
 			" ====       =============      =============      ==============      ==============   =",
 			"    =       =           =      =           =      =            =      =            =   =",
 			"    =       =           =      =           =      =            =      =            =   =",
@@ -398,6 +496,7 @@ scene("main", (levelIdx) => {
 			origin('center')
 		])
 	})
+
 	wait(3, () => {
 	nivel.destroy()
 	
@@ -410,13 +509,23 @@ scene("main", (levelIdx) => {
 			area(),
 			solid(),
 		],
-		"-": () => [
-			sprite("hero2"),
+		"+": () => [
+			sprite("block1"),
 			area(),
-			solid(),
+			// solid(),
+			// move(LEFT, 40),
+			scale(3),
+			// cleanup(30),
+			"block1"
+			
+		],
+		"-": () => [
+			sprite("bot",{anim: 'run'}),
+			area(),
+			// solid(),
 			move(LEFT, 40),
-			scale(0.9),
-			// cleanup(),
+			scale(0.8),
+			cleanup(30),
 			"player2"
 			
 		],
@@ -445,7 +554,7 @@ scene("main", (levelIdx) => {
 				return [
 					sprite(char.sprite),
 					area(),
-					solid(),
+					// solid(),
 					"character",
 					{ msg: char.msg, },
 				]
@@ -453,10 +562,18 @@ scene("main", (levelIdx) => {
 		},
 	})
 
-	
+	const player2 = get("player")[0]
 	const player = get("player")[0]
 	player.play("run")
+	player.flipX(true)
+
 	
+	var semaforo = add([
+		sprite('amarillo1'),
+		pos(370,300),
+		scale(0.3)
+	])
+
 	player.onUpdate(() => {
 
 		if (player.pos.x < 848) {
@@ -487,6 +604,19 @@ scene("main", (levelIdx) => {
 			}
 		}
 		playerPos = camPos()
+		// *permitieno que el semaforo empieze a funcionar
+		if (sumaTiempo < 200) {
+			semaforo.use(sprite('amarillo1'))	
+		} else if (sumaTiempo < 300) {
+			semaforo.use(sprite('rojo1'))	
+			
+		} else if (sumaTiempo < 500) {
+			semaforo.use(sprite('verde1'))	
+			
+		}else{
+			sumaTiempo=0
+		}
+		sumaTiempo++
 	})
 
 	function addDialog() {
@@ -534,10 +664,16 @@ scene("main", (levelIdx) => {
 	let hasKey = false
 	const dialog = addDialog()
 
+	player.onCollide("block1", () =>{
+		console.log("aqui pasa algo");
+		// semaforo.use(scale(0.5))
+	})
+
 	player.onCollide("key", (key) => {
 		destroy(key)
 		hasKey = true
 	})
+
 
 	player.onCollide("door", () => {
 		if (hasKey) {
@@ -558,26 +694,42 @@ scene("main", (levelIdx) => {
 		dialog.say(ch.msg)
 	})
 
-	const dirs = {
-		"left": LEFT,
-		"right": RIGHT,
-		"up": UP,
-		"down": DOWN,
-	}
-
+	onKeyDown("left",()=>{
+		player.use(sprite('hero'))
+		player.move(LEFT.scale(200))
+		player.play("run")
+	})
+	onKeyDown("right",()=>{
+		player.use(sprite('hero2'))
+		player.move(RIGHT.scale(200))
+		player.play("run")
+	})
+	onKeyDown("up",()=>{
+		player.use(sprite('hero4'))
+		player.play("run")
+		player.move(UP.scale(200))
+	})
+	onKeyDown("down",()=>{
+		player.use(sprite('hero3'))
+		
+		player.play("run")
+		player.move(DOWN.scale(200))
+	})
 	
-		for (const dir in dirs) {
-			onKeyPress(dir, () => {
-				if (!debug.paused) {
-				dialog.dismiss()
-				}
-			})	
-			onKeyDown(dir, () => {
-				if (!debug.paused) {
-					player.move(dirs[dir].scale(SPEED))
-				}
-			})
-		}
+
+	onKeyPress("left",() => {
+		dialog.dismiss()
+		player.play("run")
+	})
+	onKeyPress("right",() => {
+		player.play("run")
+	})
+	onKeyPress("up",() => {
+		player.play("run")
+	})
+	onKeyPress("down",() => {
+		player.play("run")
+	})
 
 	onKeyPress("enter", () => {
 		if (!debug.paused) {
@@ -602,61 +754,63 @@ scene("main", (levelIdx) => {
 		}
 	})
 
-	if (debug.paused) {
-		console.log("ya pues");
-		onKeyPress("down", () => {
-			console.log("entra");
-
-			switch (opcionMenu2) {
-				case 1:
-					marco.destroy();
-					marco = add([
-						sprite('Marco'),
-						pos(playerPos.x - 18, playerPos.y + 75),
-						origin('center'),
-						scale(2)
-					]);
-					opcionMenu2 = 2;
-				break;
-				default:
-					marco.destroy();
-					marco = add([
-						sprite('Marco'),
-						pos(playerPos.x - 18, playerPos.y - 25),
-						origin('center'),
-						scale(2)
-					]);
-					opcionMenu2 = 1;
-				break;
-			}
-		})
 	
-		onKeyPress("up", () => {
 
-			switch (opcionMenu2) {
-				case 1:
-					marco.destroy();
-					marco = add([
-						sprite('Marco'),
-						pos(playerPos.x - 18, playerPos.y - 25),
-						origin('center'),
-						scale(2)
-					]);
-					opcionMenu2 = 2;
-				break;
-				default:
-					marco.destroy();
-					marco = add([
-						sprite('Marco'),
-						pos(playerPos.x - 18, playerPos.y + 75),
-						origin('center'),
-						scale(2)
-					]);
-					opcionMenu2 = 1;
-				break;
-			}
-		})
-	}
+	// if (debug.paused) {
+	// 	console.log("ya pues");
+	// 	onKeyPress("down", () => {
+	// 		console.log("entra");
+
+	// 		switch (opcionMenu2) {
+	// 			case 1:
+	// 				marco.destroy();
+	// 				marco = add([
+	// 					sprite('Marco'),
+	// 					pos(playerPos.x - 18, playerPos.y + 75),
+	// 					origin('center'),
+	// 					scale(2)
+	// 				]);
+	// 				opcionMenu2 = 2;
+	// 			break;
+	// 			default:
+	// 				marco.destroy();
+	// 				marco = add([
+	// 					sprite('Marco'),
+	// 					pos(playerPos.x - 18, playerPos.y - 25),
+	// 					origin('center'),
+	// 					scale(2)
+	// 				]);
+	// 				opcionMenu2 = 1;
+	// 			break;
+	// 		}
+	// 	})
+	
+	// 	onKeyPress("up", () => {
+
+	// 		switch (opcionMenu2) {
+	// 			case 1:
+	// 				marco.destroy();
+	// 				marco = add([
+	// 					sprite('Marco'),
+	// 					pos(playerPos.x - 18, playerPos.y - 25),
+	// 					origin('center'),
+	// 					scale(2)
+	// 				]);
+	// 				opcionMenu2 = 2;
+	// 			break;
+	// 			default:
+	// 				marco.destroy();
+	// 				marco = add([
+	// 					sprite('Marco'),
+	// 					pos(playerPos.x - 18, playerPos.y + 75),
+	// 					origin('center'),
+	// 					scale(2)
+	// 				]);
+	// 				opcionMenu2 = 1;
+	// 			break;
+	// 		}
+	// 	})
+	// }
 
 	
 })//*Aqui termina la espera de 3Seg en la escena
@@ -670,5 +824,5 @@ scene("win", () => {
 	])
 })
 
-go('credits-0')
-// go('main', 0)
+// go('credits-0')
+go('main', 0)
