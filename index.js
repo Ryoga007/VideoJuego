@@ -14,8 +14,8 @@ loadSprite('imgIntroLinia', 'assets/sprites/Linia.png')
 loadSprite('imgDocente', 'assets/sprites/docente.png')
 loadSprite('mapa0','assets/sprites/mapaAset01.png')
 loadSprite('mapa1','assets/sprites/Mapa2.png')
-loadSprite('block', 'assets/sprites/block1.png' )
-loadSprite('block1', 'assets/sprites/block1.png' )
+loadSprite('block', 'assets/sprites/bean.png' )
+loadSprite('block1', 'assets/sprites/block.png' )
 loadSprite('cebra', 'assets/sprites/cono.png')
 loadSprite('logoUsfa', 'assets/sprites/LogoUsfa.png')
 loadSprite('nivel0', 'assets/sprites/Nivel0.png')
@@ -455,68 +455,63 @@ scene("main", (levelIdx) => {
 
 	const levels = [
 		[
-			" ",    
-			" ",
-			" =======================================================================================",
-			" =      -   +                                                                      -   =",
-			" =  |                                                                                  =",
-			" =                                                                                     =",
-			" =  @       +                                                                          =",
-			" =                             -                             -                     -   =",
-			" =          +                                                                          =",
-			" ====       =============      =============      ==============      ==============   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			" ====       =============      =============      ==============      ==============   =",
-			" =                                                                                     =",
-			" =                                         -                                      -    =",
-			" =                                                                                     =",
-			" =      -                                                                         -    =",
-			" =                                                                                     =",
-			" =                                                                                     =",
-			" ====       =============      =============      ==============      ==============   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =   $  =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =========           ========           ========            ========            =====",
+			" 	  =====       ====",    
+			"    =     =     =    =",
+			" ====     =======    ======================================================",
+			" =                                                                        =",
+			" =  @      +                                                              =",
+			" =                                                                        =",
+			" =         +                                                              =",
+			" =                                                                   -    =",
+			" ====     ===========     ===========     ============    ============    =",
+			"    =+  + =         =+  + =         =+  + =          =+  +=          =    =",
+			"    =     =         =     =         =     =          =    =          =    =",
+			"    =     =         =     =         =     =          =    =          =    =",
+			"    =     =         =     =         =     =          =    =          =    =",
+			"    =     =         =     =         =     =          =    =          =    =",
+			"    =     =         =     =         =     =          =    =          =    =",
+			"    =     =         =     =         =     =          =    =          =    =",
+			"    =     =         =     =         =     =          =    =          =    =",
+			" ====     ===========     ===========     ============    ============    =",
+			" =                                                                        =",
+			" =         +               +               +               +              =",
+			" =                                                                        =",
+			" =         +               +               +               +              =",
+			" =                                                                        =",
+			" ====     ===========     ===========     ============    ============    =",
+			"    =     =         =     =         =     =          =    =          =    =",
+			"    =     =         =     =         =     =          =    =          =    =",
+			"    =     =         =     =         =     =          =    =          =    =",
+			"    =|    =         =     =         =     =          =    =          = $  =",
+			"    =     =         =     =         =     =          =    =          =    =",
+			"    =======         =======         =======          ======          =====",
 		],
 		[
 			" ",    
-			" ",
-			" =======================================================================================",
-			" =      -   +                                                                      -   =",
+			"     =     =",
+			" ====      =================================================================================",
+			" =          +                                                                      -   =",
 			" =  |              $                                                                    =",
 			" =                                                                                     =",
 			" =  @       +                                                                          =",
-			" =                             -                             -                     -   =",
+			" =                                                                                     =",
 			" =          +                                                                          =",
-			" ====       =============      =============      ==============      ==============   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			" ====       =============      =============      ==============      ==============   =",
+			" ====     =============      =============      ==============      ==============   =",
+			"    =     =           =      =           =      =            =      =            =   =",
+			"    =     =           =      =           =      =            =      =            =   =",
+			"    =     =           =      =           =      =            =      =            =   =",
+			"    =     =           =      =           =      =            =      =            =   =",
+			"    =     =           =      =           =      =            =      =            =   =",
+			"    =     =           =      =           =      =            =      =            =   =",
+			"    =     =           =      =           =      =            =      =            =   =",
+			"    =     =           =      =           =      =            =      =            =   =",
+			"    =     =           =      =           =      =            =      =            =   =",
+			"    =     =           =      =           =      =            =      =            =   =",
+			" ====     =============      =============      ==============      ==============   =",
 			" =                                                                                     =",
-			" =                                         -                                      -    =",
 			" =                                                                                     =",
-			" =      -                                                                         -    =",
+			" =                                                                                     =",
+			" =                                                                                     =",
 			" =                                                                                     =",
 			" =                                                                                     =",
 			" ====       =============      =============      ==============      ==============   =",
@@ -542,13 +537,14 @@ scene("main", (levelIdx) => {
 	nivel.destroy()
 	
 	addLevel(levels[levelIdx], {
-		width: 36,
-		height: 36,
+		width: 43.5,
+		height: 43.5,
 		// pos: vec2(64, 64),
 		"=": () => [
 			sprite("block"), //!cambiando "grass" por "block"
 			area(),
 			solid(),
+			origin("center"),
 			"block"
 		],
 		"+": () => [
@@ -650,6 +646,24 @@ scene("main", (levelIdx) => {
 		scale(0.3)
 	])
 
+	var semaforo6 = add([
+		sprite('amarillo1'),
+		pos(1168,830),
+		scale(0.3)
+	])
+
+	var semaforo7 = add([
+		sprite('amarillo1'),
+		pos(1880,830),
+		scale(0.3)
+	])
+
+	var semaforo8 = add([
+		sprite('amarillo1'),
+		pos(2585,830),
+		scale(0.3)
+	])
+
 	player.onUpdate(() => {
 
 		if (player.pos.x < 848) {
@@ -680,23 +694,6 @@ scene("main", (levelIdx) => {
 			}
 		}
 		playerPos = camPos()
-		// *permitieno que el semaforo empieze a funcionar
-		if (sumaTiempo < 50) {
-			semaforo.use(sprite('amarillo1'))	
-			semaforo1.use(sprite('amarillo1'))	
-		} else if (sumaTiempo < 300) {
-			semaforo.use(sprite('rojo1'))	
-			semaforo1.use(sprite('rojo1'))	
-		} else if (sumaTiempo < 350) {
-			semaforo.use(sprite('amarillo1'))	
-			semaforo1.use(sprite('amarillo1'))	
-		} else if (sumaTiempo < 500) {
-			semaforo.use(sprite('verde1'))	
-			semaforo1.use(sprite('verde1'))	
-		}else{
-			sumaTiempo=0
-		}
-		sumaTiempo++
 	})
 
 	function addDialog() {
@@ -777,6 +774,51 @@ scene("main", (levelIdx) => {
 			scoreLabel.pos = (camPos())
 			vidaJuegoLabel.pos = (player.pos)
 			vidaJuegoLabel.origin = ("botright")
+		// *permitieno que el semaforo empieze a funcionar
+		if (sumaTiempo < 50) {
+			semaforo.use(sprite('amarillo1'))	
+			semaforo1.use(sprite('amarillo1'))	
+			semaforo2.use(sprite('amarillo1'))	
+			semaforo3.use(sprite('amarillo1'))	
+			semaforo4.use(sprite('amarillo1'))	
+			semaforo5.use(sprite('amarillo1'))	
+			semaforo6.use(sprite('amarillo1'))	
+			semaforo7.use(sprite('amarillo1'))	
+			semaforo8.use(sprite('amarillo1'))	
+		} else if (sumaTiempo < 300) {
+			semaforo.use(sprite('rojo1'))	
+			semaforo1.use(sprite('rojo1'))	
+			semaforo2.use(sprite('rojo1'))	
+			semaforo3.use(sprite('rojo1'))	
+			semaforo4.use(sprite('rojo1'))	
+			semaforo5.use(sprite('rojo1'))	
+			semaforo6.use(sprite('rojo1'))	
+			semaforo7.use(sprite('rojo1'))	
+			semaforo8.use(sprite('rojo1'))	
+		} else if (sumaTiempo < 350) {
+			semaforo.use(sprite('amarillo1'))	
+			semaforo1.use(sprite('amarillo1'))	
+			semaforo2.use(sprite('amarillo1'))	
+			semaforo3.use(sprite('amarillo1'))	
+			semaforo4.use(sprite('amarillo1'))	
+			semaforo5.use(sprite('amarillo1'))	
+			semaforo6.use(sprite('amarillo1'))	
+			semaforo7.use(sprite('amarillo1'))	
+			semaforo8.use(sprite('amarillo1'))	
+		} else if (sumaTiempo < 500) {
+			semaforo.use(sprite('verde1'))	
+			semaforo1.use(sprite('verde1'))	
+			semaforo2.use(sprite('verde1'))	
+			semaforo3.use(sprite('verde1'))	
+			semaforo4.use(sprite('verde1'))	
+			semaforo5.use(sprite('verde1'))	
+			semaforo6.use(sprite('verde1'))	
+			semaforo7.use(sprite('verde1'))	
+			semaforo8.use(sprite('verde1'))	
+		}else{
+			sumaTiempo=0
+		}
+		sumaTiempo++
 	})
 	
 	player.onCollide("block1", () =>{

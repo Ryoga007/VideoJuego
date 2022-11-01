@@ -25,20 +25,22 @@
     <form id="task-form" class="container d-grid gap-2" style="width: 20rem;">
         <div class="mb-3 card-body">
         <label for="title" class="form-label card-title">Nombre:</label>
-        <input type="text" placeholder="escribe aqui tu Nombre" id="task-title" />
+        <input type="text" placeholder="escribe aqui tu Nombre" id="task-title" autocomplete="off" required minlength="3" class="form-control mb-2"/>
         </div>
         <div class="mb-3 card-body">
         <label for="description">Edad:</label>
-        <input type="text" placeholder="escribe aqui tu Edad" id="task-description" />
+        <input type="text" placeholder="escribe aqui tu Edad" id="task-description" autocomplete="off" required class="form-control mb-2"/>
         </div>
         
         <button type="submit" id="btn-task-save" class="btn btn-dark">Guardar</button>
         
     </form>
+    <div style="height: 100px;">
+    </div>
     <div class="canvas-holder">
         <canvas id="game"></canvas>
     </div>
-    
+    <div style="height: 100px;"></div>
     <h1 class="text-center">Recors</h1>
     <table class="table table-hover container">
         <thead>
@@ -53,11 +55,7 @@
                         
           </tbody>
     </table>
-    <div class="container">
-        
-    </div>
-
-    
+    <div style="height: 300px;"></div>    
     
 </body>
 </html>
