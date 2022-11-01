@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Juego</title>
     <script src="https://unpkg.com/kaboom/dist/kaboom.js"></script>
+    <script type="module" src="./index.js"></script>
+    <link rel="stylesheet" href="https://bootswatch.com/5/solar/bootstrap.min.css">
 </head>
 
 <style>
@@ -14,13 +16,48 @@
         display: block;
         border: 1px solid white;
     }
-
-    body {
-        background-color: #17202A;
-    }
 </style>
 
 <body>
-    <script type="module" src="index.js"></script>
+    
+    
+    <h1 class="text-center">Registro</h1>
+    <form id="task-form" class="container d-grid gap-2" style="width: 20rem;">
+        <div class="mb-3 card-body">
+        <label for="title" class="form-label card-title">Nombre:</label>
+        <input type="text" placeholder="escribe aqui tu Nombre" id="task-title" />
+        </div>
+        <div class="mb-3 card-body">
+        <label for="description">Edad:</label>
+        <input type="text" placeholder="escribe aqui tu Edad" id="task-description" />
+        </div>
+        
+        <button type="submit" id="btn-task-save" class="btn btn-dark">Guardar</button>
+        
+    </form>
+    <div class="canvas-holder">
+        <canvas id="game"></canvas>
+    </div>
+    
+    <h1 class="text-center">Recors</h1>
+    <table class="table table-hover container">
+        <thead>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Edad</th>
+              <th scope="col">Column heading</th>
+              <th scope="col">Column heading</th>
+            </tr>
+          </thead>
+          <tbody id="tasks-container">
+                        
+          </tbody>
+    </table>
+    <div class="container">
+        
+    </div>
+
+    
+    
 </body>
 </html>
