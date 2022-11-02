@@ -19,8 +19,8 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore()
 
-export const saveTask = (title, description) => 
-    addDoc( collection(db,'tasks'), {title, description})
+export const saveTask = (title, description, nivel, score) => 
+    addDoc( collection(db,'tasks'), {title, description, nivel, score})
 
 export const getTasks = ()=> getDocs(collection(db,'tasks'))
 

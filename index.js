@@ -1,4 +1,5 @@
 import kaboom from "https://unpkg.com/kaboom/dist/kaboom.mjs";
+import { saveTask, getTasks, onSnapshot, collection, db } from "./firebase.js";
 
 kaboom({
     background: [0, 0, 0],
@@ -14,17 +15,15 @@ loadSprite('imgIntroLinia', 'assets/sprites/Linia.png')
 loadSprite('imgDocente', 'assets/sprites/docente.png')
 loadSprite('mapa0','assets/sprites/mapaAset01.png')
 loadSprite('mapa1','assets/sprites/Mapa2.png')
-loadSprite('block', 'assets/sprites/bean.png' )
-loadSprite('block1', 'assets/sprites/block.png' )
+loadSprite('block', 'assets/sprites/block1.png' )
+loadSprite('block1', 'assets/sprites/block1.png' )
 loadSprite('cebra', 'assets/sprites/cono.png')
 loadSprite('logoUsfa', 'assets/sprites/LogoUsfa.png')
 loadSprite('nivel0', 'assets/sprites/Nivel0.png')
 loadSprite('nivel1', 'assets/sprites/Nivel1.png')
-loadSprite('menu1', 'assets/sprites/Menu1.png')
-loadSprite('Marco', 'assets/sprites/Marco.png')
+loadSprite('menu1', 'assets/sprites/Pausa.png')
 loadSprite('key', 'assets/sprites/Bandera.png')
 loadSprite('door', 'assets/sprites/Bandera2.png')
-
 
 
 // *Cargamos sonido
@@ -75,14 +74,166 @@ loadSpriteAtlas('assets/sprites/AutoSet01t.png', {
 })
 loadSpriteAtlas('assets/sprites/AutoSet02.png', {
 	bot: {
-		x: 1,
-		y: 1,
+		x: 0,
+		y: 0,
 		width: 206,
-		height: 88,
+		height: 85,
 		sliceX: 2,
 		anims: {
 		run: { from: 0, to: 1, loop: true, speed: 5 }
 		}
+	},
+	bot1: {
+		x: 208,
+		y: 6,
+		width: 191,
+		height: 73,
+		sliceX: 2,
+		anims: {
+		run: { from: 0, to: 1, loop: true, speed: 5 }
+		}
+	},
+	bot2: {
+		x: 400,
+		y: 2,
+		width: 223,
+		height: 75,
+		sliceX: 2,
+		anims: {
+		run: { from: 0, to: 1, loop: true, speed: 5 }
+		}
+	},
+	bot3: {
+		x: 0,
+		y: 85,
+		width: 255,
+		height: 85,
+		sliceX: 2,
+		anims: {
+		run: { from: 0, to: 1, loop: true, speed: 5 }
+		}
+	},
+	bot4: {
+		x: 256,
+		y: 88,
+		width: 223,
+		height: 69,
+		sliceX: 2,
+		anims: {
+		run: { from: 0, to: 1, loop: true, speed: 5 }
+		}
+	},
+	bot5: {
+		x: 0,
+		y: 180,
+		width: 191,
+		height: 57,
+		sliceX: 2,
+		anims: {
+		run: { from: 0, to: 1, loop: true, speed: 5 }
+		}
+	},
+	bot6: {
+		x: 192,
+		y: 175,
+		width: 191,
+		height: 63,
+		sliceX: 2,
+		anims: {
+		run: { from: 0, to: 1, loop: true, speed: 5 }
+		}
+	},
+	bot7: {
+		x: 384,
+		y: 162,
+		width: 223,
+		height: 75,
+		sliceX: 2,
+		anims: {
+		run: { from: 0, to: 1, loop: true, speed: 5 }
+		}
+	},
+	bot8: {
+		x: 0,
+		y: 246,
+		width: 191,
+		height: 55,
+		sliceX: 2,
+		anims: {
+		run: { from: 0, to: 1, loop: true, speed: 5 }
+		}
+	},
+	bot9: {
+		x: 192,
+		y: 245,
+		width: 191,
+		height: 59,
+		sliceX: 2,
+		anims: {
+		run: { from: 0, to: 1, loop: true, speed: 5 }
+		}
+	},
+	bot10: {
+		x: 384,
+		y: 240,
+		width: 223,
+		height: 61,
+		sliceX: 2,
+		anims: {
+		run: { from: 0, to: 1, loop: true, speed: 5 }
+		}
+	},
+	bot11: {
+		x: 448,
+		y: 310,
+		width: 191,
+		height: 55,
+		sliceX: 2,
+		anims: {
+		run: { from: 0, to: 1, loop: true, speed: 5 }
+		}
+	},
+	bot12: {
+		x: 0,
+		y: 304,
+		width: 80,
+		height: 109,
+	},
+	bot13: {
+		x: 80,
+		y: 304,
+		width: 80,
+		height: 117,
+	},
+	bot14: {
+		x: 160,
+		y: 309,
+		width: 53,
+		height: 99,
+	},
+	bot15: {
+		x: 224,
+		y: 308,
+		width: 48,
+		height: 87,
+	},
+	bot16: {
+		x: 272,
+		y: 313,
+		width: 55,
+		height:101,
+	},
+	bot17: {
+		x: 336,
+		y: 320,
+		width: 53,
+		height: 80,
+	},
+	bot18: {
+		x: 400,
+		y: 314,
+		width: 48,
+		height: 83,
 	},
 })
 loadSpriteAtlas('assets/sprites/Semaforo.png', {
@@ -151,7 +302,6 @@ loadSpriteAtlas('assets/sprites/Semaforo.png', {
 // *Declarando las Variables
 // const music = play('musicaFondo', {loop: true, volume: 1})
 var linea;
-var marco;
 var menu2;
 var nivel;
 var opcionMenu = 1;
@@ -163,8 +313,49 @@ var score = 0;
 var colicion = true;
 var colicionTiempo = 0;
 var scaleMap;
+var posBotx;
+var posBoty;
+var posBot1x;
+var posBot1y;
+var posBot2x;
+var posBot2y;
+var posBot3x;
+var posBot3y;
+var posBot4x;
+var posBot4y;
+var posBot5x;
+var posBot5y;
+var posBot6x;
+var posBot6y;
+var posBot7x;
+var posBot7y;
+var posBot8x;
+var posBot8y;
+var posBot9x;
+var posBot9y;
+var posBot10x;
+var posBot10y;
+var posBot11x;
+var posBot11y;
+var posBot12x;
+var posBot12y;
+var posBot13x;
+var posBot13y;
+var posBot14x;
+var posBot14y;
+var posBot15x;
+var posBot15y;
+var posBot16x;
+var posBot16y;
+var posBot17x;
+var posBot17y;
+var posBot18x;
+var posBot18y;
 
-  
+var titleGlobal
+var descriptionGlobal
+var levelIdxGlobal
+var scoreGlobal
 
 // * Iniciando las escenas de incio
 
@@ -421,6 +612,59 @@ scene("main", (levelIdx) => {
 	switch (levelIdx) {
 		case 0:
 			scaleMap = 4
+			posBotx = 433
+			posBoty = 282
+			posBot1x = 100
+			posBot1y = 914
+			posBot2x = 1549
+			posBot2y = 917
+			posBot3x = 1563
+			posBot3y = 276
+			posBot4x = 1822
+			posBot4y = 272
+			posBot5x = 3163
+			posBot5y = 153
+			posBot6x = 3163
+			posBot6y = 801
+			posBot7x = 1584
+			posBot7y = 169
+			posBot8x = 885
+			posBot8y = 821
+			posBot9x = 2291
+			posBot9y = 796
+			posBot10x = 1600
+			posBot10y = 796
+			posBot11x = 1852
+			posBot11y = 149
+			posBot12x = 1072
+			posBot12y = 342
+			posBot13x = 1763
+			posBot13y = 332
+			posBot14x = 2467
+			posBot14y = 339
+			posBot15x = 3146
+			posBot15y = 349
+			posBot16x = 354
+			posBot16y = 341
+			posBot17x = 1050
+			posBot17y = 727
+			posBot18x = 2454
+			posBot18y = 711
+			// posBot4 =(1822,272)
+			// posBot5 =(3163,153);
+			// posBot6 =(3163,801);
+			// posBot7 =(1584,169);
+			// posBot8 =(885,821);
+			// posBot9 =(2291,796);
+			// posBot10 =(1600,796);
+			// posBot11 =(1852,149);
+			// posBot12 =(1072,342);
+			// posBot13 =(1763,332);
+			// posBot14 =(2467,339);
+			// posBot15 =(3146,349);
+			// posBot16 =(354,341);
+			// posBot17 =(1050,727);
+			// posBot18 =(2454,711);
 			break;
 		default:
 			scaleMap = 2
@@ -557,17 +801,17 @@ scene("main", (levelIdx) => {
 			"block1"
 			
 		],
-		"-": () => [
-			sprite("bot",{anim: 'run'}),
-			area(),
-			solid( ),
-			move(LEFT,40),
-			scale(0.8),
-			cleanup(30),
-			origin("center"),
-			"player2"
+		// "-": () => [
+		// 	sprite("bot",{anim: 'run'}),
+		// 	area(),
+		// 	solid( ),
+		// 	move(LEFT,40),
+		// 	scale(0.8),
+		// 	cleanup(30),
+		// 	origin("center"),
+		// 	"player2"
 			
-		],
+		// ],
 		"$": () => [
 			sprite("key"),
 			scale(0.2),
@@ -605,12 +849,224 @@ scene("main", (levelIdx) => {
 		},
 	})
 
-	const player2 = get("player2")[0]
+	
 	const player = get("player")[0]
 	player.play("run")
 	player.flipX(true)
+	// *Colocando todos loa autos 1x1
+	const bot = add([
+			sprite("bot",{anim: 'run'}),
+			pos(posBotx,posBoty),
+			area(),
+			solid( ),
+			move(RIGHT,40),
+			scale(0.8),
+			// cleanup(30),
+			origin("center"),
+			"bot"
+	])
+	const bot1 = add([
+		sprite("bot1",{anim: 'run'}),
+		pos(posBot1x,posBot1y),
+		area(),
+		solid( ),
+		move(RIGHT,40),
+		scale(0.8),
+		// cleanup(30),
+		origin("center"),
+		"bot"
+	])
+	// console.log(posBot1);
+	const bot2 = add([
+		sprite("bot2",{anim: 'run'}),
+		pos(posBot2x,posBot2y),
+		area(),
+		solid( ),
+		move(RIGHT,40),
+		scale(0.8),
+		// cleanup(30),
+		origin("center"),
+		"bot"
+	])
+	const bot3 = add([
+		sprite("bot3",{anim: 'run'}),
+		pos(posBot3x,posBot3y),
+		area(),
+		solid( ),
+		move(RIGHT,40),
+		scale(0.8),
+		// cleanup(30),
+		origin("center"),
+		"bot"
+	])
+	const bot4 = add([
+		sprite("bot4",{anim: 'run'}),
+		pos(posBot4x,posBot4y),
+		area(),
+		solid( ),
+		move(RIGHT,40),
+		scale(0.8),
+		// cleanup(30),
+		origin("center"),
+		"bot"
+	])
+	const bot5 = add([
+		sprite("bot5",{anim: 'run'}),
+		pos(posBot5x,posBot5y),
+		area(),
+		solid( ),
+		move(LEFT,40),
+		scale(0.8),
+		// cleanup(30),
+		origin("center"),
+		"bot"
+	])
+	const bot6 = add([
+		sprite("bot6",{anim: 'run'}),
+		pos(posBot6x,posBot6y),
+		area(),
+		solid( ),
+		move(LEFT,40),
+		scale(0.8),
+		// cleanup(30),
+		origin("center"),
+		"bot"
+	])
+	const bot7 = add([
+		sprite("bot7",{anim: 'run'}),
+		pos(posBot7x,posBot7y),
+		area(),
+		solid( ),
+		move(LEFT,40),
+		scale(0.8),
+		// cleanup(30),
+		origin("center"),
+		"bot"
+	])
+	const bot8 = add([
+		sprite("bot8",{anim: 'run'}),
+		pos(posBot8x,posBot8y),
+		area(),
+		solid( ),
+		move(LEFT,40),
+		scale(0.8),
+		// cleanup(30),
+		origin("center"),
+		"bot"
+	])
+	const bot9 = add([
+		sprite("bot9",{anim: 'run'}),
+		pos(posBot9x,posBot9y),
+		area(),
+		solid( ),
+		move(LEFT,40),
+		scale(0.8),
+		// cleanup(30),
+		origin("center"),
+		"bot"
+	])
+	const bot10 = add([
+		sprite("bot10",{anim: 'run'}),
+		pos(posBot10x,posBot10y),
+		area(),
+		solid( ),
+		move(LEFT,40),
+		scale(0.8),
+		// cleanup(30),
+		origin("center"),
+		"bot"
+	])
+	const bot11 = add([
+		sprite("bot11",{anim: 'run'}),
+		pos(posBot11x,posBot11y),
+		area(),
+		solid( ),
+		move(LEFT,40),
+		scale(0.8),
+		// cleanup(30),
+		origin("center"),
+		"bot"
+	])
+	const bot12 = add([
+		sprite("bot12"),
+		pos(posBot12x,posBot12y),
+		area(),
+		solid( ),
+		move(DOWN,40),
+		scale(0.8),
+		// cleanup(30),
+		origin("center"),
+		"bot"
+	])
+	const bot13 = add([
+		sprite("bot13"),
+		pos(posBot13x,posBot13y),
+		area(),
+		solid( ),
+		move(DOWN,40),
+		scale(0.8),
+		// cleanup(30),
+		origin("center"),
+		"bot"
+	])
+	const bot14 = add([
+		sprite("bot14"),
+		pos(posBot14x,posBot14y),
+		area(),
+		solid( ),
+		move(DOWN,40),
+		scale(0.8),
+		// cleanup(30),
+		origin("center"),
+		"bot"
+	])
+	const bot15 = add([
+		sprite("bot15"),
+		pos(posBot15x,posBot15y),
+		area(),
+		solid( ),
+		move(DOWN,40),
+		scale(0.8),
+		// cleanup(30),
+		origin("center"),
+		"bot"
+	])
+	const bot16 = add([
+		sprite("bot16"),
+		pos(posBot16x,posBot16y),
+		area(),
+		solid( ),
+		move(DOWN,40),
+		scale(0.8),
+		// cleanup(30),
+		origin("center"),
+		"bot"
+	])
+	const bot17 = add([
+		sprite("bot17"),
+		pos(posBot17x,posBot17y),
+		area(),
+		solid( ),
+		move(DOWN,40),
+		scale(0.8),
+		// cleanup(30),
+		origin("center"),
+		"bot"
+	])
+	const bot18 = add([
+		sprite("bot18"),
+		pos(posBot18x,posBot18y),
+		area(),
+		solid( ),
+		move(DOWN,40),
+		scale(0.8),
+		// cleanup(30),
+		origin("center"),
+		"bot"
+	])
 
-	
+
+	// *Colocando tpodos lo semaforos 1x1
 	var semaforo = add([
 		sprite('amarillo1'),
 		pos(265,365),
@@ -745,6 +1201,8 @@ scene("main", (levelIdx) => {
 		text(score,  {
 			size: 80,
 		  	}),
+		origin("center")
+		
 	])
 	const vidaJuegoLabel = add([
 		text(vidaJuego,  {
@@ -755,13 +1213,22 @@ scene("main", (levelIdx) => {
 	onUpdate(() => {
 		if (!colicion) {
 			colicionTiempo++
-			if (colicionTiempo > 20) {
+			if (colicionTiempo > 10) {
 				colicion = true
 				colicionTiempo = 0
 			}
 		}
+		// * para colocar la image haci la derecha
+		bot.flipX(true)
+		bot1.flipX(true)
+		bot2.flipX(true)
+		bot3.flipX(true)
+		bot4.flipX(true)
+		
+
+		// * La suma de score
 		score++
-		// scoreLabel.text = score
+		// console.log(player.pos);
 		// *combertir segundos en horas
 			var hour = Math.floor(score / 3600);
 			hour = (hour < 10)? '0' + hour : hour;
@@ -771,7 +1238,9 @@ scene("main", (levelIdx) => {
 			second = (second < 10)? '0' + second : second;
 			scoreLabel.text = hour + ':' + minute + ':' + second
 		// *Posicionando el cronometro
-			scoreLabel.pos = (camPos())
+			scoreLabel.use(pos(playerPos.x,playerPos.y-400))
+			
+		// *Posicionando las Vidas del veiculo
 			vidaJuegoLabel.pos = (player.pos)
 			vidaJuegoLabel.origin = ("botright")
 		// *permitieno que el semaforo empieze a funcionar
@@ -814,7 +1283,7 @@ scene("main", (levelIdx) => {
 			semaforo5.use(sprite('verde1'))	
 			semaforo6.use(sprite('verde1'))	
 			semaforo7.use(sprite('verde1'))	
-			semaforo8.use(sprite('verde1'))	
+			semaforo8.use(sprite('verde1'))		
 		}else{
 			sumaTiempo=0
 		}
@@ -829,13 +1298,17 @@ scene("main", (levelIdx) => {
 				vidaJuegoLabel.text = vidaJuego
 				if (vidaJuego < 1) {
 					add([
-						text("Perdiste",{
-							size: 200
+						text("Perdiste\n"+scoreLabel.text,{
+							size: 100
 						}),
-						pos(width()/2, height()/2),
+						pos(playerPos.x,playerPos.y-150),
 						origin("center")
 					])
 					debug.paused = true
+					// !Guarnado en la base de datos--------------------------------------------------------------
+					levelIdxGlobal = levelIdx+1
+					scoreGlobal = scoreLabel.text
+					saveTask(titleGlobal,descriptionGlobal, levelIdxGlobal, scoreGlobal)
 				}
 			}
 		}
@@ -843,20 +1316,24 @@ scene("main", (levelIdx) => {
 
 	})
 
-	player.onCollide("player2", () => {
+	player.onCollide('bot', () => {
 		if (colicion) {
 			vidaJuego--
 			shake(5)
 			vidaJuegoLabel.text = vidaJuego
 			if (vidaJuego < 1) {
 				add([
-					text("Perdiste",{
-						size: 200
+					text("Perdiste\n"+scoreLabel.text,{
+						size: 100
 					}),
-					pos(width()/2, height()/2),
+					pos(playerPos.x,playerPos.y-150),
 					origin("center")
 				])
 				debug.paused = true
+					levelIdxGlobal = levelIdx+1
+					scoreGlobal = scoreLabel.text
+					saveTask(titleGlobal,descriptionGlobal, levelIdxGlobal, scoreGlobal)
+				// saveTask(title.value,description.value,scoreLabel.text) 
 			}
 		}
 		colicion = false
@@ -887,10 +1364,62 @@ scene("main", (levelIdx) => {
 		dialog.say(ch.msg)
 	})
 
-	player2.onCollide("block", () => {
-		console.log("entra?");
-		player2.destroy()
-		
+	bot.onCollide("block", () => {
+		bot.use(pos(posBotx,posBoty))
+	})
+	bot1.onCollide("block", () => {
+		bot1.use(pos(posBot1x,posBot1y))
+	})
+	bot2.onCollide("block", () => {
+		bot2.use(pos(posBot2x,posBot2y))
+	})
+	bot3.onCollide("block", () => {
+		bot3.use(pos(posBot3x,posBot3y))
+	})
+	bot4.onCollide("block", () => {
+		bot4.use(pos(posBot4x,posBot4y))
+	})
+	bot5.onCollide("block", () => {
+		bot5.use(pos(posBot5x,posBot5y))
+	})
+	bot6.onCollide("block", () => {
+		bot6.use(pos(posBot6x,posBot6y))
+	})
+	bot7.onCollide("block", () => {
+		bot7.use(pos(posBot7x,posBot7y))
+	})
+	bot8.onCollide("block", () => {
+		bot8.use(pos(posBot8x,posBot8y))
+	})
+	bot9.onCollide("block", () => {
+		bot9.use(pos(posBot9x,posBot9y))
+	})
+	bot10.onCollide("block", () => {
+		bot10.use(pos(posBot10x,posBot10y))
+	})
+	bot11.onCollide("block", () => {
+		bot11.use(pos(posBot11x,posBot11y))
+	})
+	bot12.onCollide("block", () => {
+		bot12.use(pos(posBot12x,posBot12y))
+	})
+	bot13.onCollide("block", () => {
+		bot13.use(pos(posBot13x,posBot13y))
+	})
+	bot14.onCollide("block", () => {
+		bot14.use(pos(posBot14x,posBot14y))
+	})
+	bot15.onCollide("block", () => {
+		bot15.use(pos(posBot15x,posBot15y))
+	})
+	bot16.onCollide("block", () => {
+		bot16.use(pos(posBot16x,posBot16y))
+	})
+	bot17.onCollide("block", () => {
+		bot17.use(pos(posBot17x,posBot17y))
+	})
+	bot18.onCollide("block", () => {
+		bot18.use(pos(posBot18x,posBot18y))
 	})
 
 	onKeyDown("left",()=>{
@@ -928,12 +1457,15 @@ scene("main", (levelIdx) => {
 		player.play("run")
 	})
 	onKeyPress("right",() => {
+		dialog.dismiss()
 		player.play("run")
 	})
 	onKeyPress("up",() => {
+		dialog.dismiss()
 		player.play("run")
 	})
 	onKeyPress("down",() => {
+		dialog.dismiss()
 		player.play("run")
 	})
 
@@ -945,18 +1477,11 @@ scene("main", (levelIdx) => {
 				sprite('menu1'),
 				pos(playerPos),
 				origin('center'),
-				scale(2)
-			]);
-			marco = add([
-				sprite('Marco'),
-				pos(playerPos.x - 18, playerPos.y -25),
-				origin('center'),
-				scale(2)
+				// scale(2)1
 			]);	
 		} else {
 			debug.paused = false
 			menu2.destroy()
-			marco.destroy()
 		}
 	})
 
@@ -971,11 +1496,11 @@ scene("win", () => {
 	])
 })
 
-// go('credits-0')
-go('main', 0)
+go('credits-0')
+// go('main', 0)
 
 // TODO: haciendo la coneccion con la base de datos--------------------------------
-import { saveTask, getTasks, onSnapshot, collection, db } from "./firebase.js";
+// import { saveTask, getTasks, onSnapshot, collection, db } from "./firebase.js";
 
 const taskForm = document.getElementById('task-form')
 const tasksContainer = document.getElementById('tasks-container')
@@ -992,8 +1517,8 @@ window.addEventListener('DOMContentLoaded', async () => {
 					<tr class="table-active">
 						<th scope="row">${task.title}</th>
 						<td>${task.description}</td>
-						<td>Column content</td>
-						<td>Column content</td>
+						<td>${task.nivel}</td>
+						<td>${task.score}</td>
 					</tr>
 				
 			`
@@ -1007,8 +1532,14 @@ taskForm.addEventListener('submit',(e) => {
 
 	const title = taskForm['task-title']
 	const description = taskForm['task-description']
-
-	saveTask(title.value,description.value)
+	const levelIdx = taskForm['task-nivel']
+	const score2 = taskForm['task-score']
+	
+	titleGlobal = title.value
+	descriptionGlobal = description.value
+	levelIdxGlobal = levelIdx.value
+	scoreGlobal = score2.value
+	// saveTask(title.value,description.value)
 
 	taskForm.reset()
 })
