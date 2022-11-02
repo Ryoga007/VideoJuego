@@ -1244,7 +1244,7 @@ scene("main", (levelIdx) => {
 			vidaJuegoLabel.pos = (player.pos)
 			vidaJuegoLabel.origin = ("botright")
 		// *permitieno que el semaforo empieze a funcionar
-		if (sumaTiempo < 50) {
+		if (sumaTiempo < 20) {
 			semaforo.use(sprite('amarillo1'))	
 			semaforo1.use(sprite('amarillo1'))	
 			semaforo2.use(sprite('amarillo1'))	
@@ -1254,7 +1254,7 @@ scene("main", (levelIdx) => {
 			semaforo6.use(sprite('amarillo1'))	
 			semaforo7.use(sprite('amarillo1'))	
 			semaforo8.use(sprite('amarillo1'))	
-		} else if (sumaTiempo < 300) {
+		} else if (sumaTiempo < 100) {
 			semaforo.use(sprite('rojo1'))	
 			semaforo1.use(sprite('rojo1'))	
 			semaforo2.use(sprite('rojo1'))	
@@ -1264,7 +1264,7 @@ scene("main", (levelIdx) => {
 			semaforo6.use(sprite('rojo1'))	
 			semaforo7.use(sprite('rojo1'))	
 			semaforo8.use(sprite('rojo1'))	
-		} else if (sumaTiempo < 350) {
+		} else if (sumaTiempo < 120) {
 			semaforo.use(sprite('amarillo1'))	
 			semaforo1.use(sprite('amarillo1'))	
 			semaforo2.use(sprite('amarillo1'))	
@@ -1274,7 +1274,7 @@ scene("main", (levelIdx) => {
 			semaforo6.use(sprite('amarillo1'))	
 			semaforo7.use(sprite('amarillo1'))	
 			semaforo8.use(sprite('amarillo1'))	
-		} else if (sumaTiempo < 500) {
+		} else if (sumaTiempo < 200) {
 			semaforo.use(sprite('verde1'))	
 			semaforo1.use(sprite('verde1'))	
 			semaforo2.use(sprite('verde1'))	
@@ -1287,12 +1287,13 @@ scene("main", (levelIdx) => {
 		}else{
 			sumaTiempo=0
 		}
+
 		sumaTiempo++
 	})
 	
 	player.onCollide("block1", () =>{
 		if (colicion) {
-			if ((sumaTiempo>350)&&(sumaTiempo < 500)) {
+			if ((sumaTiempo>120)&&(sumaTiempo < 200)) {
 				vidaJuego--	
 				shake(10)
 				vidaJuegoLabel.text = vidaJuego

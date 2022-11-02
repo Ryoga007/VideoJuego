@@ -8,6 +8,7 @@
     <script src="https://unpkg.com/kaboom/dist/kaboom.js"></script>
     <script type="module" src="./index.js"></script>
     <link rel="stylesheet" href="https://bootswatch.com/5/solar/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/b9231ddeda.js" crossorigin="anonymous"></script>
 </head>
 
 <style>
@@ -49,15 +50,129 @@
             <tr>
               <th scope="col">Nombre</th>
               <th scope="col">Edad</th>
-              <th scope="col">Column heading</th>
-              <th scope="col">Column heading</th>
+              <th scope="col">Nivel</th>
+              <th scope="col">Record</th>
             </tr>
           </thead>
           <tbody id="tasks-container">
                         
           </tbody>
     </table>
-    <div style="height: 3z00px;"></div>    
+    <div style="height: 100px;"></div>    
+    <h1 class="text-center">Preguntas sobre seguridad Vial</h1>
+    <div class="container" style="width: 900px;">
+        <form>
+            <fieldset>
+            <!-- <legend>Legend</legend> -->
+            <!-- <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                <input type="text" readonly="" class="form-control-plaintext" id="staticEmail" value="email@example.com">
+                </div>
+            </div> -->
+            <!-- <div< class="form-group">
+                <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </di>v> -->
+            <!-- <div class="form-group">
+                <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="exampleSelect1" class="form-label mt-4">Example select</label>
+                <select class="form-select" id="exampleSelect1">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleSelect2" class="form-label mt-4">Example multiple select</label>
+                <select multiple="" class="form-select" id="exampleSelect2">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleTextarea" class="form-label mt-4">Example textarea</label>
+                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="formFile" class="form-label mt-4">Default file input example</label>
+                <input class="form-control" type="file" id="formFile">
+            </div> -->
+            <!-- <fieldset class="form-group">
+                <legend class="mt-4">¿En qué lugares está permitido estacionar un vehículo?</legend>
+                <div class="form-check">
+                <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                <label class="form-check-label" for="optionsRadios1">
+                    En la entrada de los edificios de oficinas publicas?
+                </label>
+                </div>
+                <div class="form-check">
+                <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                <label class="form-check-label" for="optionsRadios2">
+                    A mas de 10 metros de las señales de Auto?
+                </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios2" value="option3">
+                    <label class="form-check-label" for="optionsRadios2">
+                    En cualquier parte por falta de combustible
+                </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios2" value="option4">
+                    <label class="form-check-label" for="optionsRadios2">
+                        Ninguna de las anteriores
+                    </label>
+                    </div>
+            </fieldset> -->
+            <fieldset class="form-group">
+                <div class="card text-white bg-secondary mb-3">
+                    <div class="card-header h5">
+                        <i class="fa-solid fa-clipboard-question"></i>
+                        ¿En qué lugares está permitido estacionar un vehículo?</div>
+                    <div class="card-body">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                En la entrada de los edificios de oficinas publicas
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                            <label class="form-check-label" for="flexCheckChecked">
+                                A mas de 10 metros de las señales de Auto
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                En cualquier parte por falta de combustible
+                            </label>
+                            </div>
+                            <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                            <label class="form-check-label" for="flexCheckChecked">
+                                Ninguna de las anteriores
+                            </label>
+                            </div>
+                      <!-- <h4 class="card-title">Secondary card title</h4>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                    </div>
+                  </div>
+            </fieldset>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            </fieldset>
+        </form>
+    </div>
     
 </body>
 </html>
