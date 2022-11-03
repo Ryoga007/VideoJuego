@@ -30,6 +30,9 @@ loadSprite('door', 'assets/sprites/Bandera2.png')
 
 // *Cargamos sonido
 
+loadSound("musicaFondo", 'assets/sounds/under.mp3')
+loadSound("musicaFondo2", 'assets/sounds/TopGear.mp3')
+
 // *Caragando imagenes con movimiento
 loadSpriteAtlas('assets/sprites/AutoSet01t.png', {
     hero: {
@@ -302,7 +305,7 @@ loadSpriteAtlas('assets/sprites/Semaforo.png', {
 })
 
 // *Declarando las Variables
-// const music = play('musicaFondo', {loop: true, volume: 1})
+const music = play('musicaFondo', {loop: true, volume: 1})
 var linea;
 var menu2;
 var nivel;
@@ -353,11 +356,30 @@ var posBot17x;
 var posBot17y;
 var posBot18x;
 var posBot18y;
+var posSemaforox;
+var posSemaforoy;
+var posSemaforo1x;
+var posSemaforo1y;
+var posSemaforo2x;
+var posSemaforo2y;
+var posSemaforo3x;
+var posSemaforo3y;
+var posSemaforo4x;
+var posSemaforo4y;
+var posSemaforo5x;
+var posSemaforo5y;
+var posSemaforo6x;
+var posSemaforo6y;
+var posSemaforo7x;
+var posSemaforo7y;
+var posSemaforo8x;
+var posSemaforo8y;
 
 var titleGlobal
 var descriptionGlobal
 var levelIdxGlobal
 var scoreGlobal
+var scoreLabelGlobal
 
 // * Iniciando las escenas de incio
 
@@ -468,7 +490,7 @@ scene('menu', () => {
 		onKeyPress("enter", () => {
 			switch (opcionMenu) {
 				case 1:
-					// music.stop(),
+					music.stop(),
 					go("main",0)
 					break;
 				case 2:
@@ -652,6 +674,24 @@ scene("main", (levelIdx) => {
 			posBot17y = 727
 			posBot18x = 2454
 			posBot18y = 711
+			posSemaforox = 265
+			posSemaforoy = 365
+			posSemaforo1x = 470
+			posSemaforo1y = 180
+			posSemaforo2x = 470
+			posSemaforo2y = 830
+			posSemaforo3x = 985
+			posSemaforo3y = 365
+			posSemaforo4x = 1680
+			posSemaforo4y = 365
+			posSemaforo5x = 2390
+			posSemaforo5y = 365
+			posSemaforo6x = 1168
+			posSemaforo6y = 830
+			posSemaforo7x = 1880
+			posSemaforo7y = 830
+			posSemaforo8x = 2585
+			posSemaforo8y = 830
 			break;
 		default:
 			scaleMap = 2
@@ -679,20 +719,38 @@ scene("main", (levelIdx) => {
 			posBot10y = 839
 			posBot11x = 2610
 			posBot11y = 1100
-			// posBot12x = 1493
-			// posBot12y = 1100
+			posBot12x = 0
+			posBot12y = 0
 			posBot13x = 1054
 			posBot13y = 578
-			// posBot14x = 1054
-			// posBot14y = 578
+			posBot14x = 0
+			posBot14y = 0
 			posBot15x = 2597
 			posBot15y = 578
-			// posBot16x = 2597
-			// posBot16y = 578
+			posBot16x = 0
+			posBot16y = 0
 			posBot17x = 1780
 			posBot17y = 858
-			// posBot18x = 1799
-			// posBot18y = 868
+			posBot18x = 1799
+			posBot18y = 868
+			posSemaforox = 850
+			posSemaforoy = 644
+			posSemaforo1x = 1158
+			posSemaforo1y = 644
+			posSemaforo2x = 2412
+			posSemaforo2y = 644
+			posSemaforo3x = 2645
+			posSemaforo3y = 644
+			posSemaforo4x = 1870
+			posSemaforo4y = 887
+			posSemaforo5x = 1577
+			posSemaforo5y = 887
+			posSemaforo6x = 1231
+			posSemaforo6y = 1154
+			posSemaforo7x = 965
+			posSemaforo7y = 1154
+			posSemaforo8x = 2585
+			posSemaforo8y = 1154
 			break;
 	}
 
@@ -702,10 +760,10 @@ scene("main", (levelIdx) => {
 		scale(scaleMap)
 	])
 	
-	// const music = play("musicaFondo", {
-	// 	volume: 0.5,
-	// 	loop: true
-	// })
+	const music = play("musicaFondo2", {
+		volume: 0.5,
+		loop: true
+	})
 
 	
 	const SPEED = 320
@@ -770,21 +828,21 @@ scene("main", (levelIdx) => {
 			" ",
 			" =========================================================================",
 			" =                                                                       =",
-			" =                                                                       =",
+			" =                  +     +                            +     +           =",
 			" =  @                                                                  $ =",
-			" =                                                                       =",
+			" =                  +     +                            +     +           =",
 			" =====================    ===============================    =============",
 			" =====================    ===============================    =============",
 			" =                                                                       =",
+			" =                                  +     +                                =",
 			" =                                                                       =",
-			" =                                                                       =",
-			" =                                                                       =",
+			" =                                  +     +                                =",
 			" =====================================    ================================",
 			" =====================================    ================================",
 			" =                                                                       =",
+			" =                    +    +                                             =",
 			" =                                                                       =",
-			" =                                                                       =",
-			" =     |                                                                 =",
+			" =     |              +    +                                             =",
 			" =========================================================================",
 			
 		],
@@ -1094,54 +1152,54 @@ scene("main", (levelIdx) => {
 	// *Colocando tpodos lo semaforos 1x1
 	var semaforo = add([
 		sprite('amarillo1'),
-		pos(265,365),
+		pos(posSemaforox,posSemaforoy),
 		scale(0.3)
 	])
 
 	var semaforo1 = add([
 		sprite('amarillo1'),
-		pos(470,180),
+		pos(posSemaforo1x,posSemaforo1y),
 		scale(0.3)
 	])
 
 	var semaforo2 = add([
 		sprite('amarillo1'),
-		pos(985,365),
+		pos(posSemaforo2x,posSemaforo2y),
 		scale(0.3)
 	])
 
 	var semaforo3 = add([
 		sprite('amarillo1'),
-		pos(470,830),
+		pos(posSemaforo3x,posSemaforo3y),
 		scale(0.3)
 	])
 	var semaforo4 = add([
 		sprite('amarillo1'),
-		pos(1680,365),
+		pos(posSemaforo4x,posSemaforo4y),
 		scale(0.3)
 	])
 
 	var semaforo5 = add([
 		sprite('amarillo1'),
-		pos(2390,365),
+		pos(posSemaforo5x,posSemaforo5y),
 		scale(0.3)
 	])
 
 	var semaforo6 = add([
 		sprite('amarillo1'),
-		pos(1168,830),
+		pos(posSemaforo6x,posSemaforo6y),
 		scale(0.3)
 	])
 
 	var semaforo7 = add([
 		sprite('amarillo1'),
-		pos(1880,830),
+		pos(posSemaforo7x,posSemaforo7y),
 		scale(0.3)
 	])
 
 	var semaforo8 = add([
 		sprite('amarillo1'),
-		pos(2585,830),
+		pos(posSemaforo8x,posSemaforo8y),
 		scale(0.3)
 	])
 
@@ -1253,7 +1311,7 @@ scene("main", (levelIdx) => {
 
 		// * La suma de score
 		score++
-		console.log(player.pos);
+		// console.log(player.pos);
 		// *combertir segundos en horas
 			var hour = Math.floor(score / 3600);
 			hour = (hour < 10)? '0' + hour : hour;
@@ -1330,6 +1388,7 @@ scene("main", (levelIdx) => {
 						pos(playerPos.x,playerPos.y-150),
 						origin("center")
 					])
+					music.stop(),
 					debug.paused = true
 					// !Guarnado en la base de datos--------------------------------------------------------------
 					levelIdxGlobal = levelIdx+1
@@ -1355,6 +1414,7 @@ scene("main", (levelIdx) => {
 					pos(playerPos.x,playerPos.y-150),
 					origin("center")
 				])
+				music.stop(),
 				debug.paused = true
 					levelIdxGlobal = levelIdx+1
 					scoreGlobal = scoreLabel.text
@@ -1367,6 +1427,8 @@ scene("main", (levelIdx) => {
 
 	player.onCollide("key", (key) => {
 		destroy(key)
+		vidaJuego = 7
+		vidaJuegoLabel.text = vidaJuego
 		hasKey = true
 	})
 
@@ -1374,13 +1436,15 @@ scene("main", (levelIdx) => {
 	player.onCollide("door", () => {
 		if (hasKey) {
 			if (levelIdx + 1 < levels.length) {
-				// music.stop()
+				music.stop()
 				go("main", levelIdx + 1)
 			} else {
-				// music.stop()
+				music.stop()
+				scoreLabelGlobal = scoreLabel.text
 				go("win")
 			}
 		} else {
+			
 			dialog.say("No tomaste la Bandera")
 		}
 	})
@@ -1516,14 +1580,17 @@ scene("main", (levelIdx) => {
 
 scene("win", () => {
 	add([
-		text("Ganaste"),
+		text("Ganaste\n"+ scoreLabelGlobal),
 		pos(width() / 2, height() / 2),
 		origin("center"),
-	])
+	]),
+	levelIdxGlobal = "Termino"
+	scoreGlobal = scoreLabelGlobal
+	saveTask(titleGlobal,descriptionGlobal, levelIdxGlobal, scoreGlobal)
 })
 
-// go('credits-0')
-go('main', 1)
+go('credits-0')
+// go('main', 1)
 
 // TODO: haciendo la coneccion con la base de datos--------------------------------
 // import { saveTask, getTasks, onSnapshot, collection, db } from "./firebase.js";
