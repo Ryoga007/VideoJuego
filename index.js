@@ -14,7 +14,9 @@ loadSprite('imgFondoEscena2', 'assets/sprites/wallpaperbetter1.jpg')
 loadSprite('imgIntroLinia', 'assets/sprites/Linia.png')
 loadSprite('imgDocente', 'assets/sprites/docente.png')
 loadSprite('mapa0','assets/sprites/mapaAset01.png')
+loadSprite('mapas0','assets/sprites/block1.png')
 loadSprite('mapa1','assets/sprites/Mapa2.png')
+loadSprite('mapas1','assets/sprites/Mapas2.png')
 loadSprite('block', 'assets/sprites/block1.png' )
 loadSprite('block1', 'assets/sprites/block1.png' )
 loadSprite('cebra', 'assets/sprites/cono.png')
@@ -650,24 +652,47 @@ scene("main", (levelIdx) => {
 			posBot17y = 727
 			posBot18x = 2454
 			posBot18y = 711
-			// posBot4 =(1822,272)
-			// posBot5 =(3163,153);
-			// posBot6 =(3163,801);
-			// posBot7 =(1584,169);
-			// posBot8 =(885,821);
-			// posBot9 =(2291,796);
-			// posBot10 =(1600,796);
-			// posBot11 =(1852,149);
-			// posBot12 =(1072,342);
-			// posBot13 =(1763,332);
-			// posBot14 =(2467,339);
-			// posBot15 =(3146,349);
-			// posBot16 =(354,341);
-			// posBot17 =(1050,727);
-			// posBot18 =(2454,711);
 			break;
 		default:
 			scaleMap = 2
+			posBotx = 547
+			posBoty = 684
+			posBot1x = 1169
+			posBot1y = 684
+			posBot2x = 1937
+			posBot2y = 945
+			posBot3x = 663
+			posBot3y = 945
+			posBot4x = 630
+			posBot4y = 1205
+			posBot5x = 844
+			posBot5y = 578
+			posBot6x = 1693
+			posBot6y = 578
+			posBot7x = 2687
+			posBot7y = 578
+			posBot8x = 1580
+			posBot8y = 839
+			posBot9x = 3043
+			posBot9y = 839
+			posBot10x = 3043
+			posBot10y = 839
+			posBot11x = 2610
+			posBot11y = 1100
+			// posBot12x = 1493
+			// posBot12y = 1100
+			posBot13x = 1054
+			posBot13y = 578
+			// posBot14x = 1054
+			// posBot14y = 578
+			posBot15x = 2597
+			posBot15y = 578
+			// posBot16x = 2597
+			// posBot16y = 578
+			posBot17x = 1780
+			posBot17y = 858
+			// posBot18x = 1799
+			// posBot18y = 868
 			break;
 	}
 
@@ -732,40 +757,36 @@ scene("main", (levelIdx) => {
 		],
 		[
 			" ",    
-			"     =     =",
-			" ====      =================================================================================",
-			" =          +                                                                      -   =",
-			" =  |              $                                                                    =",
-			" =                                                                                     =",
-			" =  @       +                                                                          =",
-			" =                                                                                     =",
-			" =          +                                                                          =",
-			" ====     =============      =============      ==============      ==============   =",
-			"    =     =           =      =           =      =            =      =            =   =",
-			"    =     =           =      =           =      =            =      =            =   =",
-			"    =     =           =      =           =      =            =      =            =   =",
-			"    =     =           =      =           =      =            =      =            =   =",
-			"    =     =           =      =           =      =            =      =            =   =",
-			"    =     =           =      =           =      =            =      =            =   =",
-			"    =     =           =      =           =      =            =      =            =   =",
-			"    =     =           =      =           =      =            =      =            =   =",
-			"    =     =           =      =           =      =            =      =            =   =",
-			"    =     =           =      =           =      =            =      =            =   =",
-			" ====     =============      =============      ==============      ==============   =",
-			" =                                                                                     =",
-			" =                                                                                     =",
-			" =                                                                                     =",
-			" =                                                                                     =",
-			" =                                                                                     =",
-			" =                                                                                     =",
-			" ====       =============      =============      ==============      ==============   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =       =           =      =           =      =            =      =            =   =",
-			"    =========           ========           ========            ========            =====",
+			" ",    
+			" ",    
+			" ",
+			" ",    
+			" ",    
+			" ",
+			" ",
+			" ",
+			" ",
+			" ",
+			" ",
+			" =========================================================================",
+			" =                                                                       =",
+			" =                                                                       =",
+			" =  @                                                                  $ =",
+			" =                                                                       =",
+			" =====================    ===============================    =============",
+			" =====================    ===============================    =============",
+			" =                                                                       =",
+			" =                                                                       =",
+			" =                                                                       =",
+			" =                                                                       =",
+			" =====================================    ================================",
+			" =====================================    ================================",
+			" =                                                                       =",
+			" =                                                                       =",
+			" =                                                                       =",
+			" =     |                                                                 =",
+			" =========================================================================",
+			
 		],
 	]
 	
@@ -1064,7 +1085,11 @@ scene("main", (levelIdx) => {
 		origin("center"),
 		"bot"
 	])
-
+	// *añadimos dentro del los semaforos y autos una imagen de fondo
+	add([
+		sprite('mapas'+levelIdx),
+		scale(scaleMap)
+	])
 
 	// *Colocando tpodos lo semaforos 1x1
 	var semaforo = add([
@@ -1228,7 +1253,7 @@ scene("main", (levelIdx) => {
 
 		// * La suma de score
 		score++
-		// console.log(player.pos);
+		console.log(player.pos);
 		// *combertir segundos en horas
 			var hour = Math.floor(score / 3600);
 			hour = (hour < 10)? '0' + hour : hour;
@@ -1497,8 +1522,8 @@ scene("win", () => {
 	])
 })
 
-go('credits-0')
-// go('main', 0)
+// go('credits-0')
+go('main', 1)
 
 // TODO: haciendo la coneccion con la base de datos--------------------------------
 // import { saveTask, getTasks, onSnapshot, collection, db } from "./firebase.js";
