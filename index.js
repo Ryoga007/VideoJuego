@@ -1394,6 +1394,17 @@ scene("main", (levelIdx) => {
 					levelIdxGlobal = levelIdx+1
 					scoreGlobal = scoreLabel.text
 					saveTask(titleGlobal,descriptionGlobal, levelIdxGlobal, scoreGlobal)
+					add([  
+						text('presiona ESPACIADOR para comenzar', {
+						  size: 28,
+						  font: 'apl386'
+						}),
+						pos(width()/2, height()/2),
+						origin('center')
+					  ]);
+					onKeyPress('space', () => {
+						go('credits-0')
+					})
 				}
 			}
 		}
@@ -1419,7 +1430,18 @@ scene("main", (levelIdx) => {
 					levelIdxGlobal = levelIdx+1
 					scoreGlobal = scoreLabel.text
 					saveTask(titleGlobal,descriptionGlobal, levelIdxGlobal, scoreGlobal)
-				// saveTask(title.value,description.value,scoreLabel.text) 
+				// saveTask(title.value,description.value,scoreLabel.text)
+				add([  
+					text('presiona ESPACIADOR para comenzar', {
+					  size: 28,
+					  font: 'apl386'
+					}),
+					pos(width()/2, height()/2),
+					origin('center')
+				  ]);
+				onKeyPress('space', () => {
+					go('credits-0')
+				}) 
 			}
 		}
 		colicion = false
@@ -1442,6 +1464,17 @@ scene("main", (levelIdx) => {
 				music.stop()
 				scoreLabelGlobal = scoreLabel.text
 				go("win")
+				add([  
+					text('presiona ESPACIADOR para comenzar', {
+					  size: 28,
+					  font: 'apl386'
+					}),
+					pos(width()/2, height()/2),
+					origin('center')
+				  ]);
+				onKeyPress('space', () => {
+					go('credits-0')
+				})
 			}
 		} else {
 			
